@@ -1,0 +1,89 @@
+@use '@angular/material' as mat;
+
+$primary-palette: mat.define-palette((50: #f5f3ff,
+      100: #ede9fe,
+      200: #ddd6fe,
+      300: #c4b5fd,
+      400: #a78bfa,
+      500: #8b5cf6,
+      600: #7c3aed,
+      700: #6d28d9,
+      800: #5b21b6,
+      900: #4c1d95,
+      A100: #e9d5ff,
+      A200: #d8b4fe,
+      A400: #9333ea,
+      A700: #6b21b6,
+      contrast: (50: #000000,
+        100: #000000,
+        200: #000000,
+        300: #000000,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+        A100: #000000,
+        A200: #000000,
+        A400: #ffffff,
+        A700: #ffffff,
+      )));
+
+$accent-palette: mat.define-palette((50: #fff7e4,
+      100: #ffedcc,
+      200: #ffd699,
+      300: #ffbf66,
+      400: #ffa833,
+      500: #ff9100,
+      600: #e68100,
+      700: #cc7100,
+      800: #b36100,
+      900: #995100,
+      A100: #ffd699,
+      A200: #ffbf66,
+      A400: #ff9100,
+      A700: #cc7100,
+      contrast: (50: #000000,
+        100: #000000,
+        200: #000000,
+        300: #000000,
+        400: #000000,
+        500: #000000,
+        600: #000000,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+        A100: #000000,
+        A200: #000000,
+        A400: #000000,
+        A700: #ffffff,
+      )));
+
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+@include mat.core();
+
+
+$premier_link_apps_account_manager-theme_light: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+        warn: $warn-palette ),
+      density: (scale: 0,
+      )));
+
+$premier_link_apps_account_manager-theme_dark: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+        warn: $warn-palette ),
+      density: (scale: 0,
+      )));
+
+
+:root {
+  @include mat.all-component-themes($premier_link_apps_account_manager-theme_light);
+}
+
+[data-theme='dark'] {
+  @include mat.all-component-themes($premier_link_apps_account_manager-theme_dark);
+}

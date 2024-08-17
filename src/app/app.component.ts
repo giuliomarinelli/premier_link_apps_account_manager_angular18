@@ -11,50 +11,30 @@ import { ThemeOwner } from './Models/interfaces-types/theme-owner.type';
 export class AppComponent implements OnInit {
   title = 'premier_link_apps_account_manager';
 
+  protected src!: string
+
   constructor(protected readonly themeManager: ThemeManagerService) { }
 
-  protected active1 = false
-  protected active2 = false
 
-  protected setActive(n: number) {
-    this.active1 = false
-    this.active2 = false
-    switch (n) {
-      case 1:
-        this.active1 = true
-        break
-      case 2:
-        this.active2 = true
-    }
+
+  private osThemeChangeListener(): void {
+    const mq = this.themeManager.getOsDarkModeMediaQuery()
+    mq.addEventListener('change', () => {
+      this.themeManager.updateOsTheme()
+      this.setLogoByTheme = this.themeManager.getTheme
+    })
   }
 
-  // private osThemeChangeListener(): void {
-  //   const mq = this.themeManager.getOsMediaQueryList()
-  //   mq.addEventListener('change', () => {
-  //     this.themeManager.setReverseTheme("OS")
-  //   })
-  // }
+  private set setLogoByTheme(theme: Theme) {
+    this.src = this.themeManager.getTheme === "light" ? "logo-light.png" : "logo-dark.png"
+  }
 
   ngOnInit(): void {
-    // console.log("tema corrente = " + this.themeManager.getTheme)
-    // console.log("proprietario tema = " + this.themeManager.getThemeOwner)
-    // console.log("impostazioni tema = " + this.themeManager.getChosenTheme)
-    this.themeManager.chooseTheme = "light"
-    // console.log("tema corrente = " + this.themeManager.getTheme)
-    // console.log("proprietario tema = " + this.themeManager.getThemeOwner)
-    // console.log("impostazioni tema = " + this.themeManager.getChosenTheme)
-    // this.themeManager.chooseTheme = "OS"
-    // console.log("tema corrente = " + this.themeManager.getTheme)
-    // console.log("proprietario tema = " + this.themeManager.getThemeOwner)
-    // console.log("impostazioni tema = " + this.themeManager.getChosenTheme)
+    this.osThemeChangeListener()
+    this.setLogoByTheme = this.themeManager.getTheme
     // this.themeManager.chooseTheme = "light"
-    // console.log("tema corrente = " + this.themeManager.getTheme)
-    // console.log("proprietario tema = " + this.themeManager.getThemeOwner)
-    // console.log("impostazioni tema = " + this.themeManager.getChosenTheme)
-    // this.themeManager.chooseTheme = "OS"
-    // console.log("tema corrente = " + this.themeManager.getTheme)
-    // console.log("proprietario tema = " + this.themeManager.getThemeOwner)
-    // console.log("impostazioni tema = " + this.themeManager.getChosenTheme)
+
+
   }
 
 

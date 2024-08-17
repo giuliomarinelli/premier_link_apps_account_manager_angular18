@@ -16,12 +16,20 @@
     font-family: 'Optima';
   }
 
+  h2 {
+    @apply font-sans font-bold mb-4 text-lg 3xs:text-xl 2xs:text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+  }
+
 }
 
 @layer components {
 
   .btn {
     @apply px-8 py-3 text-xl rounded-lg transition-colors ease-in-out duration-300
+  }
+
+  .btn-small {
+    @apply px-3 py-1 text-base rounded-lg transition-colors ease-in-out duration-300
   }
 
   .btn-primary {
@@ -36,6 +44,10 @@
     @apply bg-accent dark:bg-accent-dark text-zinc-950 hover:bg-accent-hover dark:hover:bg-accent-hoverDark
   }
 
+  .btn-light {
+    @apply bg-slate-200 text-zinc-950
+  }
+
   .btn-rounded {
     @apply rounded-3xl
   }
@@ -46,3 +58,6 @@
 .active {
   @apply border-2 border-yellow-300 rounded-md
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

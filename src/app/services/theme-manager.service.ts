@@ -38,6 +38,13 @@ export class ThemeManagerService {
     return themeOwner === "OS" ? "OS" : theme as ThemeChose
   }
 
+  public updateOsTheme(): void {
+    const theme: Theme = this.getOsDarkModeMediaQuery().matches ? "dark" : "light"
+    if (this._themeOwner() === "OS") this._theme.set(theme)
+    console.log(this._theme())
+    this.applyTheme(this._theme())
+  }
+
   public set chooseTheme(chose: ThemeChose) {
     this._chosenTheme.set(chose)
     this._themeOwner.set(chose === "OS" ? chose : "User")
@@ -88,7 +95,7 @@ export class ThemeManagerService {
     this.applyTheme(this._theme())
   }
 
-  private getOsDarkModeMediaQuery(): MediaQueryList {
+  public getOsDarkModeMediaQuery(): MediaQueryList {
     return window?.matchMedia('(prefers-color-scheme: dark)')
   }
 
@@ -101,9 +108,11 @@ export class ThemeManagerService {
       switch (theme) {
         case "dark":
           document.documentElement.classList.add("dark")
+          document.documentElement.setAttribute("data-theme", "dark")
           break
         case "light":
           if (document.documentElement.classList.contains("dark")) document.documentElement.classList.remove("dark")
+          if (document.documentElement.getAttribute("data-theme")) document.documentElement.removeAttribute("data-theme")
       }
     }
   }
