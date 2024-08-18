@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-    content: [
-      "./src/**/*.{html,ts}"
-    ],
+  content: [
+    "./src/**/*.{html,ts}"
+  ],
   theme: {
     extend: {
       screens: {
@@ -29,10 +29,15 @@ module.exports = {
         "text": {
           DEFAULT: "#0a0a0a",
           dark: "#e2e8f0"
+        },
+        "success": {
+          DEFAULT: "#15803d",
+          dark: "#4ade80"
         }
+
       }
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/plugin.cjs")],
 }
 

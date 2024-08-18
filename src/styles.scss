@@ -1,0 +1,232 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+@import './scss-partials/tw_css_variables';
+@import './scss-partials/tw_sass_variables';
+
+$light-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$violet-palette,
+        tertiary: mat.$yellow-palette,
+      ),
+      density: (scale: 0,
+      )));
+
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$violet-palette,
+        tertiary: mat.$yellow-palette,
+      ),
+      density: (scale: 0,
+      )));
+
+:root {
+  --mat-menu-container-color: #e2e8f0;
+}
+
+$mat-menu-container-color-light: #e2e8f0;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mat-menu-container-color: #1e293b;
+  }
+}
+
+$mat-menu-container-color-dark: #1e293b;
+
+:root {
+  @include mat.all-component-themes($light-theme);
+}
+
+[data-theme='dark'] {
+  @include mat.all-component-themes($dark-theme);
+}
+
+
+
+.mat-mdc-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+
+
+.mat-mdc-menu-item.separator {
+  border-bottom: 1px solid #94a3b8 !important;
+}
+
+.mat-mdc-menu-item.separator-dark {
+  border-bottom: 1px solid #0a0a0a !important;
+}
+
+.mat-mdc-menu-item.__active {
+  background-color: #cbd5e1 !important;
+  z-index: 1000 !important;
+}
+
+.mat-mdc-menu-item.__active-dark {
+  background-color: #64748b !important;
+  z-index: 1000 !important;
+}
+
+
+
+
+
+
+
+
+
+
+@font-face {
+  font-family: 'Optima';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Optima'), url('../public/fonts/OPTIMA.woff') format('woff');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import "../node_modules/tw-elements/css/tw-elements.min.css";
+
+@layer base {
+
+  .text-optima {
+    font-family: 'Optima';
+  }
+
+  h2 {
+    @apply font-sans font-bold mb-4 text-lg 3xs:text-xl 2xs:text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-secondary dark:text-accent-dark;
+  }
+
+  h3 {
+    @apply font-sans font-bold mb-3 text-lg 3xs:text-xl 2xs:text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-primary dark:text-accent-dark;
+  }
+
+}
+
+@layer utilities {
+  .responsive-container {
+    @apply w-full md:container sm:max-w-full min-[769px]:w-11/12 lg:w-11/12 xl:w-11/12 mx-auto;
+  }
+
+  .mat-menu-panel {
+    z-index: 1000;
+  }
+}
+
+@layer components {
+
+  button {
+    @apply cursor-pointer
+  }
+
+  .btn {
+    @apply px-8 py-3 text-xl rounded-lg transition-colors ease-in-out duration-300;
+  }
+
+  .btn-small {
+    @apply px-3 py-1 text-base rounded-lg transition-colors ease-in-out duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-slate-100 hover:bg-primary-hover;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-zinc-950 hover:bg-secondary-hover;
+  }
+
+  .btn-accent {
+    @apply bg-accent dark:bg-accent-dark text-zinc-950 hover:bg-accent-hover dark:hover:bg-accent-hoverDark;
+  }
+
+  .btn-light {
+    @apply bg-slate-200 text-zinc-950;
+  }
+
+  .btn-rounded {
+    @apply rounded-3xl;
+  }
+
+
+
+
+}
+
+
+.active {
+  @apply border-2 border-yellow-300 rounded-md
+}
+
+html, body {
+  height: 100%;
+}
+
+html:not(.first-load),
+body:not(.first-load) {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+html {
+
+
+  &.dark {
+
+    .mdc-button {
+      transition: all ease-in-out .35s;
+      $mdc-button-dark-bg: lighten($text-default, 8%);
+      background: $mdc-button-dark-bg !important;
+      color: $text-dark !important;
+
+      &:hover {
+        background: lighten($mdc-button-dark-bg, 5%) !important;
+      }
+    }
+
+    .mat-mdc-menu-item:not([disabled]) {
+
+      transition: background-color ease-in .35s;
+      &:hover {
+        background-color: lighten($mat-menu-container-color-dark, 3%) !important;
+      }
+
+    }
+
+  }
+
+  &:not(.dark) {
+
+    .mdc-button {
+      transition: all ease-in-out .35s;
+      $mdc-button-light-bg: lighten($primary-default, 8%);
+      background: $mdc-button-light-bg !important;
+      color: $secondary-default !important;
+
+      &:hover {
+        background: lighten($mdc-button-light-bg, 5%) !important;
+      }
+
+    }
+
+    .mat-mdc-menu-item:not([disabled]) {
+
+      transition: background-color ease-in .35s;
+      &:hover {
+        background-color: darken($mat-menu-container-color-light, 2%) !important;
+      }
+
+    }
+
+
+  }
+
+}
+

@@ -11,11 +11,11 @@ import { ThemeChose } from '../Models/interfaces-types/theme-chose.type';
 })
 export class ThemeManagerService {
 
-  private _theme = signal<Theme>(this.getOsDefaultTheme())
+  private _theme: WritableSignal<Theme> = signal<Theme>(this.getOsDefaultTheme())
 
-  private _themeOwner = signal<ThemeOwner>("OS")
+  private _themeOwner: WritableSignal<ThemeOwner> = signal<ThemeOwner>("OS")
 
-  private _chosenTheme = signal<ThemeChose>("OS")
+  private _chosenTheme: WritableSignal<ThemeChose> = signal<ThemeChose>("OS")
 
   constructor() {
     this.themeInit()
@@ -23,10 +23,6 @@ export class ThemeManagerService {
 
   public get getTheme(): Theme {
     return this._theme()
-  }
-
-  public get getThemeSignal(): WritableSignal<Theme> {
-    return this._theme
   }
 
   public get getThemeOwner(): ThemeOwner {
@@ -52,6 +48,7 @@ export class ThemeManagerService {
   public set chooseTheme(chose: ThemeChose) {
     this._chosenTheme.set(chose)
     this._themeOwner.set(chose === "OS" ? chose : "User")
+    if (this._themeOwner() === "OS") this.clearThemeConfig()
     let theme: Theme | undefined
     if (chose === "dark" && this._themeOwner() === "User") theme = "dark"
     if (chose === "light" && this._themeOwner() === "User") theme = "light"
@@ -94,8 +91,12 @@ export class ThemeManagerService {
   }
 
   private themeInit(): void {
+    if (this.isThereThemeConfig()) {
+      this.restoreThemeConfig()
+      this.applyTheme(this._theme())
+      return
+    }
     if (this._chosenTheme() === "OS") this.clearThemeConfig()
-    if (this.isThereThemeConfig()) this.restoreThemeConfig()
     this.applyTheme(this._theme())
   }
 
@@ -103,7 +104,7 @@ export class ThemeManagerService {
     return window?.matchMedia('(prefers-color-scheme: dark)')
   }
 
-  private getOsDefaultTheme(): Theme {
+  public getOsDefaultTheme(): Theme {
     return this.getOsDarkModeMediaQuery().matches ? "dark" : "light"
   }
 
@@ -121,13 +122,13 @@ export class ThemeManagerService {
     }
   }
 
-  private saveThemeConfig(theme: Theme): void {
+  public saveThemeConfig(theme: Theme): void {
     if (typeof localStorage !== "undefined") {
       localStorage.setItem("__tw_mat_theme", theme)
     }
   }
 
-  private restoreThemeConfig(): void {
+  public restoreThemeConfig(): void {
     const themeConfig = localStorage?.getItem("__tw_mat_theme")
     if (typeof localStorage !== "undefined" && themeConfig) {
       const theme: Theme = themeConfig === "dark" || themeConfig === "light" ? themeConfig as Theme : "light"
@@ -139,8 +140,6 @@ export class ThemeManagerService {
   private clearThemeConfig(): void {
     if (typeof localStorage !== "undefined") {
       localStorage.removeItem("__tw_mat_theme")
-      this._theme.set(this.getOsDefaultTheme())
-      this._themeOwner.set("OS")
     }
   }
 

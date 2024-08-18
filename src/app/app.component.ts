@@ -1,57 +1,45 @@
-import { Component, effect, OnInit, WritableSignal } from '@angular/core';
-import { Theme } from './Models/interfaces-types/theme.type';
-import { ThemeManagerService } from './services/theme-manager.service';
-import { ThemeOwner } from './Models/interfaces-types/theme-owner.type';
+import { Component, effect, OnDestroy, OnInit, WritableSignal } from '@angular/core';
+import { Router, RoutesRecognized } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
-  title = 'premier_link_apps_account_manager';
+export class AppComponent implements OnInit, OnDestroy {
 
-  protected src!: string
+  protected logoSrc!: string
+  protected titleSrc!: string
 
+  protected path!: string
 
-  constructor(protected readonly themeManager: ThemeManagerService) {
-    effect(() => {
-      this.setLogoByTheme = this.themeManager.getTheme
-    })
-  }
+  private onlyOnce = true
 
+  private routerSubscription!: Subscription
 
+  constructor(private readonly router: Router) { }
 
-
-  private osThemeChangeListener(): void {
-    const mq = this.themeManager.getOsDarkModeMediaQuery()
-    mq.addEventListener('change', () => {
-      this.themeManager.updateOsTheme()
-      this.setLogoByTheme = this.themeManager.getTheme
-    })
-  }
-
-  private set setLogoByTheme(theme: Theme) {
-    this.src = this.themeManager.getTheme === "light" ? "logo-light.png" : "logo-dark.png"
-  }
 
   ngOnInit(): void {
-    this.osThemeChangeListener()
-    this.setLogoByTheme = this.themeManager.getTheme
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "light"
-    this.themeManager.chooseTheme = "OS"
-    this.themeManager.chooseTheme = "dark"
-
-
-
-
+    setTimeout(() => {
+      const html: HTMLElement = document?.documentElement
+      const body: HTMLElement = document.body
+      if (html.classList.contains("first-load")) html.classList.remove("first-load")
+      if (body.classList.contains("first-load")) body.classList.remove("first-load")
+    }, 100)
+    this.routerSubscription = this.router.events.subscribe(e => {
+      if (e instanceof RoutesRecognized && this.onlyOnce) {
+        this.path = e.url
+        this.onlyOnce = false
+      }
+    })
   }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription) this.routerSubscription.unsubscribe()
+  }
+
 
 
 
