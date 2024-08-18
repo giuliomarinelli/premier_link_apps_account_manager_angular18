@@ -1,4 +1,4 @@
-import { Component, OnInit, WritableSignal } from '@angular/core';
+import { Component, effect, OnInit, WritableSignal } from '@angular/core';
 import { Theme } from './Models/interfaces-types/theme.type';
 import { ThemeManagerService } from './services/theme-manager.service';
 import { ThemeOwner } from './Models/interfaces-types/theme-owner.type';
@@ -13,7 +13,13 @@ export class AppComponent implements OnInit {
 
   protected src!: string
 
-  constructor(protected readonly themeManager: ThemeManagerService) { }
+
+  constructor(protected readonly themeManager: ThemeManagerService) {
+    effect(() => {
+      this.setLogoByTheme = this.themeManager.getTheme
+    })
+  }
+
 
 
 
@@ -32,7 +38,17 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.osThemeChangeListener()
     this.setLogoByTheme = this.themeManager.getTheme
-    // this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "OS"
+    this.themeManager.chooseTheme = "light"
+
+
 
 
   }

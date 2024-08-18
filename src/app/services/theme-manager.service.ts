@@ -25,6 +25,10 @@ export class ThemeManagerService {
     return this._theme()
   }
 
+  public get getThemeSignal(): WritableSignal<Theme> {
+    return this._theme
+  }
+
   public get getThemeOwner(): ThemeOwner {
     return this._themeOwner()
   }

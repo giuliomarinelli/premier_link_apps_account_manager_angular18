@@ -26,9 +26,16 @@
   .responsive-container {
     @apply w-full md:container sm:max-w-full min-[769px]:w-11/12 lg:w-11/12 xl:w-11/12 mx-auto;
   }
+  .mat-menu-panel {
+    z-index: 1000;
+  }
 }
 
 @layer components {
+
+  button {
+    @apply cursor-pointer
+  }
 
   .btn {
     @apply px-8 py-3 text-xl rounded-lg transition-colors ease-in-out duration-300;

@@ -2,14 +2,46 @@
  dark:border-b dark:border-slate-400">
   <div class="responsive-container flex justify-between items-center">
     <a class="flex gap-3 dark:gap-2 items-center" href="#">
-      <img [ngSrc]="src" width="40" height="40" priority="true" class="rounded-full">
-      <h1 class="text-optima text-2xl dark:text-accent mt-1">Premier Link</h1>
+      <img [ngSrc]="src" width="36" height="36" priority="true" class="rounded-full">
+      <h1 class="text-optima text-2xl dark:text-accent mt-1">Premier ID</h1>
     </a>
-    <a class="btn-small btn-accent dark:btn-light btn-rounded">Registrati</a>
+    <!-- <button class="flex gap-1 items-center text-secondary" mat-button [matMenuTriggerFor]="menu">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8 ">
+          @if(themeManager.getTheme === "light") {
+          <path
+            d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+          } @else if (themeManager.getTheme === "dark") {
+            <path fill-rule="evenodd"
+            d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+            clip-rule="evenodd" />
+          }
+        </svg>
+        <span class="text-sm">▼</span>
+    </button> -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
+  <mat-menu #menu="matMenu" xPosition="after" yPosition="below" class="position-absolute">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
 </header>
+
 <div class="py-3 px-5 text-text dark:text-text-dark responsive-container">
-  <h2>blaaaaaaaaaaaaaaa</h2>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla numquam magni deserunt consequuntur, et quo unde sequi quam molestias eum dolor, nihil repellat optio incidunt alias? Maiores sunt quidem nihil.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos quam amet nisi ea commodi doloribus minima quidem minus error! Animi voluptatum praesentium eaque voluptatem fuga illo nostrum unde, repudiandae officia!</p>
+  <h2 class="text-primary dark:text-accent">blaaaaaaaaaaaaaaa</h2>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla numquam magni deserunt consequuntur, et quo unde
+    sequi quam molestias eum dolor, nihil repellat optio incidunt alias? Maiores sunt quidem nihil.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos quam amet nisi ea commodi doloribus minima
+    quidem minus error! Animi voluptatum praesentium eaque voluptatem fuga illo nostrum unde, repudiandae officia!</p>
 </div>

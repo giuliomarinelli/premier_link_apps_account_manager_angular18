@@ -1,4 +1,13 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
 
 $primary-palette: mat.define-palette((50: #f5f3ff,
       100: #ede9fe,
@@ -30,60 +39,29 @@ $primary-palette: mat.define-palette((50: #f5f3ff,
         A700: #ffffff,
       )));
 
-$accent-palette: mat.define-palette((50: #fff7e4,
-      100: #ffedcc,
-      200: #ffd699,
-      300: #ffbf66,
-      400: #ffa833,
-      500: #ff9100,
-      600: #e68100,
-      700: #cc7100,
-      800: #b36100,
-      900: #995100,
-      A100: #ffd699,
-      A200: #ffbf66,
-      A400: #ff9100,
-      A700: #cc7100,
-      contrast: (50: #000000,
-        100: #000000,
-        200: #000000,
-        300: #000000,
-        400: #000000,
-        500: #000000,
-        600: #000000,
-        700: #ffffff,
-        800: #ffffff,
-        900: #ffffff,
-        A100: #000000,
-        A200: #000000,
-        A400: #000000,
-        A700: #ffffff,
-      )));
 
-$warn-palette: mat.define-palette(mat.$red-palette);
+// Define the theme object.
+$prova-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
 
-@include mat.core();
-
-
-$premier_link_apps_account_manager-theme_light: mat.define-theme((color: (theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-        warn: $warn-palette ),
-      density: (scale: 0,
-      )));
-
-$premier_link_apps_account_manager-theme_dark: mat.define-theme((color: (theme-type: dark,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-        warn: $warn-palette ),
-      density: (scale: 0,
-      )));
-
-
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
 :root {
-  @include mat.all-component-themes($premier_link_apps_account_manager-theme_light);
+  @include mat.all-component-themes($prova-theme);
 }
 
-[data-theme='dark'] {
-  @include mat.all-component-themes($premier_link_apps_account_manager-theme_dark);
-}
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($prova-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($prova-theme);

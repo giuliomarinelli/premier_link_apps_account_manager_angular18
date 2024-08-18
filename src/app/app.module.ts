@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgOptimizedImage } from '@angular/common'
+import { MatMenuModule } from '@angular/material/menu'
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { NgOptimizedImage } from '@angular/common'
     AppRoutingModule,
     FormsModule,
     MatToolbarModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     provideAnimationsAsync()
