@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     this.themeManager.chooseTheme = "light"
     this.themeManager.chooseTheme = "light"
     this.themeManager.chooseTheme = "OS"
-    this.themeManager.chooseTheme = "light"
+    this.themeManager.chooseTheme = "dark"
 
 
 
