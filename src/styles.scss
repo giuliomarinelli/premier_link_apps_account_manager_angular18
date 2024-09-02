@@ -41,7 +41,7 @@ $mat-menu-container-color-dark: #1e293b;
   @include mat.all-component-themes($dark-theme);
 }
 
-
+// Angular Matrial Overrides
 
 .mat-mdc-menu-content {
   padding-top: 0 !important;
@@ -194,6 +194,7 @@ html {
     .mat-mdc-menu-item:not([disabled]) {
 
       transition: background-color ease-in .35s;
+
       &:hover {
         background-color: lighten($mat-menu-container-color-dark, 3%) !important;
       }
@@ -219,6 +220,7 @@ html {
     .mat-mdc-menu-item:not([disabled]) {
 
       transition: background-color ease-in .35s;
+
       &:hover {
         background-color: darken($mat-menu-container-color-light, 2%) !important;
       }
@@ -229,4 +231,3 @@ html {
   }
 
 }
-

@@ -5,8 +5,6 @@ const { join } = require('path')
 
 const colors = twConfig.theme.extend.colors
 
-
-
 const _colors = []
 
 
@@ -51,6 +49,9 @@ console.log(`SUCCESS!
   - created src/scss-partials/_tw_sass_variables.scss:
 
   ${sassVarsFile}
+
+  ===================
+
   - created src/scss-partials/_tw_css_variables.scss:
 
   ${cssVarsFile}`)
