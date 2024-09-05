@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   protected path!: string
 
-  private onlyOnce = true
+  private onlyOnce: boolean = true
 
   private routerSubscription!: Subscription
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     setTimeout(() => {
-      const html: HTMLElement = document?.documentElement
+      const html: HTMLElement = document.documentElement
       const body: HTMLElement = document.body
       if (html.classList.contains("first-load")) html.classList.remove("first-load")
       if (body.classList.contains("first-load")) body.classList.remove("first-load")

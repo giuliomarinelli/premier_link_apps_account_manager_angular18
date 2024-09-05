@@ -41,7 +41,6 @@ export class ThemeManagerService {
   public updateOsTheme(): void {
     const theme: Theme = this.getOsDarkModeMediaQuery().matches ? "dark" : "light"
     if (this._themeOwner() === "OS") this._theme.set(theme)
-    console.log(this._theme())
     this.applyTheme(this._theme())
   }
 

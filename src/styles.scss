@@ -123,11 +123,11 @@ $mat-menu-container-color-dark: #1e293b;
   }
 
   .btn {
-    @apply px-8 py-3 text-xl rounded-lg transition-colors ease-in-out duration-300;
+    @apply px-8 py-3 text-xl rounded-lg transition-colors ease-in-out duration-400;
   }
 
   .btn-small {
-    @apply px-3 py-1 text-base rounded-lg transition-colors ease-in-out duration-300;
+    @apply px-3 py-1 text-base rounded-lg transition-colors ease-in-out duration-400;
   }
 
   .btn-primary {
